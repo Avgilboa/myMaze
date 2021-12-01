@@ -1,21 +1,15 @@
 package com.company;
-
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Node {
     private int index;
     private int root;
-    static HashMap<Integer,Node> nodes = new HashMap<>();
 
     public Node(int index) {
         this.index = index;
         this.root = index;
-    }
-
-    static public void makeNodes(int m, int n) {
-        for(int i=0; i<m*n;i++) {
-            nodes.put(i,new Node(i));
-        }
     }
 
     public void union(int id) {
