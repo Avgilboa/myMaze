@@ -13,6 +13,7 @@ public class algo {
         Edge = getEdges(m,n);
         cell = new ArrayList<>();
         cell = checkBlock();
+        new GuiFrame(m,n, cell);
     }
     public  void makeNodes(int m, int n) {
 
@@ -102,6 +103,6 @@ public class algo {
         return this.cell;
     }
     public static void main(String[] args) {
-        algo t = new algo(4,4);
+        algo t = new algo(12,12);
     }
 }
