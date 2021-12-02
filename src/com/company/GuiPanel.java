@@ -11,7 +11,7 @@ import java.util.List;
 public class GuiPanel extends JPanel implements ActionListener {
     static int SCREEN_WIDTH;
     static int SCREEN_HIGHT;
-    static int UNIT_SIZE =29;
+    static int UNIT_SIZE =15;
     boolean runing = false;
     List<edge> edge;
     int X;
@@ -45,10 +45,10 @@ public void findBlock(Graphics g) {
             System.out.println("the paramters are: " + x +" " +y);
             drawRight(y,x,g);
         }
-        if(temp.src.getIndex()+X ==temp.dst.getIndex())
+        else if(temp.src.getIndex()+X ==temp.dst.getIndex())
         {
-            int y = (temp.src.getIndex()%X);
-            int x = (temp.src.getIndex()-y)/X;
+            int y = (temp.dst.getIndex()%X);
+            int x = (temp.dst.getIndex()-y)/X;
             System.out.println("src: " + temp.src.getIndex() + " Dst: " + temp.dst.getIndex());
             System.out.println("the paramters are: " + x +" " +y);
             drawUp(y,x,g);
@@ -80,14 +80,14 @@ public void findBlock(Graphics g) {
             g.drawLine(2,2,2,SCREEN_HIGHT);
             g.drawLine(SCREEN_WIDTH,2,SCREEN_WIDTH,SCREEN_HIGHT);
             g.drawLine(2,SCREEN_HIGHT-2,SCREEN_WIDTH,SCREEN_HIGHT-2);
-            for (int i=0; i<SCREEN_WIDTH/UNIT_SIZE;i++)
-            {
-                g.drawLine(i*UNIT_SIZE,0,i*UNIT_SIZE,SCREEN_HIGHT);
-            }
-           for (int i=0; i<SCREEN_HIGHT/UNIT_SIZE;i++)
-            {
-                g.drawLine(0,i*UNIT_SIZE,SCREEN_WIDTH,i*UNIT_SIZE);
-           }
+//            for (int i=0; i<SCREEN_WIDTH/UNIT_SIZE;i++)
+//            {
+//                g.drawLine(i*UNIT_SIZE,0,i*UNIT_SIZE,SCREEN_HIGHT);
+//            }
+//           for (int i=0; i<SCREEN_HIGHT/UNIT_SIZE;i++)
+//            {
+//                g.drawLine(0,i*UNIT_SIZE,SCREEN_WIDTH,i*UNIT_SIZE);
+//           }
         }
     }
 
