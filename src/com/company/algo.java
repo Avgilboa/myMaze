@@ -78,11 +78,10 @@ public class algo {
     public List<edge> checkBlock() {
         Iterator<edge> it = Edge.iterator();
         while(it.hasNext()) {
-            i++;
             edge temp = it.next();
-            //System.out.println(nodes.get(temp.src.getIndex()).size() + " " +(++i));
             if(temp.src.getRoot()==temp.dst.getRoot()) {
                 cell.add(temp);
+                System.out.println("src " + temp.src.getIndex() + " dst " + temp.dst.getIndex());
                 continue;
             } else  {
                if(nodes.get(temp.src.getRoot()).size() > nodes.get(temp.dst.getRoot()).size())
@@ -97,10 +96,9 @@ public class algo {
 
             }
         }
-        System.out.println(this.i);
         return this.cell;
     }
     public static void main(String[] args) {
-        algo t = new algo(40,40);
+        algo t = new algo(60,50);
     }
 }
