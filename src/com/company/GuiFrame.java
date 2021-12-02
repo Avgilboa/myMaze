@@ -10,7 +10,7 @@ public class GuiFrame extends JFrame {
         this.setTitle("Union-Maze");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 }
