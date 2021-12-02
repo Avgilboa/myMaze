@@ -20,8 +20,8 @@ public class GuiPanel extends JPanel implements ActionListener {
     {
         this.X =r;
         this.Y =l;
-        this.SCREEN_HIGHT = (l)*UNIT_SIZE;
-        this.SCREEN_WIDTH = (r)*UNIT_SIZE;
+        this.SCREEN_HIGHT = (r)*UNIT_SIZE;
+        this.SCREEN_WIDTH = (l)*UNIT_SIZE;
         this.edge = edge;
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HIGHT));
         this.setBackground(Color.BLACK);
@@ -41,39 +41,45 @@ public void findBlock(Graphics g) {
             int y = temp.src.getIndex() % Y;
             int x = (temp.src.getIndex() - y) / X;
             drawRight(y, x, g);
+            continue;
         }
         if (temp.src.getIndex() + 1 == temp.dst.getIndex()) {
             int y = temp.dst.getIndex() % Y;
             int x = (temp.dst.getIndex() - y) / X;
             drawRight(y, x, g);
+            continue;
         }
         if (temp.src.getIndex() + Y == temp.dst.getIndex()) {
             int y = temp.dst.getIndex() % Y;
             int x = (temp.dst.getIndex() - y) / X;
             drawUp(y, x, g);
+            continue;
         }
         if (temp.src.getIndex() - Y == temp.dst.getIndex()) {
             int y = temp.src.getIndex() % Y ;
             int x = (temp.src.getIndex() - y) / X;
             drawUp(y, x, g);
+            continue;
         }
     }
 }
     public void drawUp(int x, int y, Graphics g)
     {
         g.setColor(Color.RED);
-        g.drawLine(x*UNIT_SIZE,(y)*UNIT_SIZE,(x-1)*UNIT_SIZE,(y)*UNIT_SIZE);
+        g.drawLine((x)*UNIT_SIZE,(y)*UNIT_SIZE,(x+1)*UNIT_SIZE,(y)*UNIT_SIZE);
     }
     public void drawRight(int x,int y, Graphics g)
     {
         g.setColor(Color.RED);
-        g.drawLine((x)*UNIT_SIZE,y*UNIT_SIZE,(x)*UNIT_SIZE,(y-1)*UNIT_SIZE);
+        g.drawLine((x+1)*UNIT_SIZE,(y)*UNIT_SIZE,(x+1)*UNIT_SIZE,(y+1)*UNIT_SIZE);
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
-        findBlock(g);
+        //findBlock(g);
+        drawRight(1,0,g);
+        drawUp(4,3,g);
     }
     public void draw(Graphics g) {
         if (runing) {
@@ -86,10 +92,10 @@ public void findBlock(Graphics g) {
             {
                 g.drawLine(i*UNIT_SIZE,0,i*UNIT_SIZE,SCREEN_HIGHT);
             }
-            for (int i=0; i<SCREEN_HIGHT/UNIT_SIZE;i++)
+           for (int i=0; i<SCREEN_HIGHT/UNIT_SIZE;i++)
             {
                 g.drawLine(0,i*UNIT_SIZE,SCREEN_WIDTH,i*UNIT_SIZE);
-            }
+           }
         }
     }
 
