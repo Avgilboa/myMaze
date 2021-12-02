@@ -11,7 +11,7 @@ import java.util.List;
 public class GuiPanel extends JPanel implements ActionListener {
     static int SCREEN_WIDTH;
     static int SCREEN_HIGHT;
-    static int UNIT_SIZE =40;
+    static int UNIT_SIZE =29;
     boolean runing = false;
     List<edge> edge;
     int X;
@@ -23,7 +23,7 @@ public class GuiPanel extends JPanel implements ActionListener {
         this.SCREEN_HIGHT = (Lines)*UNIT_SIZE;
         this.SCREEN_WIDTH = (Col)*UNIT_SIZE;
         this.edge = edge;
-        this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HIGHT));
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH+10,SCREEN_HIGHT+10));
         this.setBackground(Color.BLACK);
         this.setFocusable(true);
         //this.addKeyListener(new MyKeyAdapter);
@@ -37,34 +37,17 @@ public void findBlock(Graphics g) {
     Iterator<edge> it = edge.iterator();
     while (it.hasNext()) {
         edge temp = it.next();
-        if ((temp.src.getIndex() - 1) == temp.dst.getIndex()) {
-            System.out.println("1");
-            int y = temp.dst.getIndex() % Y;
-            int x = (temp.dst.getIndex() - y) / X;
-            drawRight(x, y, g);
-
+        if(temp.src.getIndex()+1 ==temp.dst.getIndex())
+        {
+            int x = (temp.src.getIndex()%Y);
+            int y = (temp.src.getIndex()-x)/X;
+            System.out.println("src: " + temp.src.getIndex() + " Dst: " + temp.dst.getIndex());
+            System.out.println("the paramters are: " + x +" " +y);
+            drawRight(x,y,g);
         }
-        else if((temp.src.getIndex() + 1) == temp.dst.getIndex()) {
-            System.out.println("2");
-            int y = (temp.src.getIndex() % Y);
-            int x = (temp.src.getIndex() - y) / X;
-            drawRight(x, y, g);
-        }
-        else if (temp.src.getIndex() + X == temp.dst.getIndex()) {
-            System.out.println("?");
-            int y = (temp.dst.getIndex() % Y);
-            int x = ((temp.dst.getIndex() - y) / X);
-            drawUp(x, y, g);
-        }
-        else if (temp.src.getIndex() - X == temp.dst.getIndex()) {
-            System.out.println("!");
-            int y = (temp.src.getIndex() % Y) ;
-            int x = (temp.src.getIndex() - y) / X;
-            drawUp(x, y, g);
-        }
-        else {
-            System.out.println("not good!");
-        }
+//        else {
+//            System.out.println("problem");
+//        }
     }
 }
     public void drawUp(int x, int y, Graphics g)
@@ -81,9 +64,9 @@ public void findBlock(Graphics g) {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
-//        drawRight(5,2,g);
-//        drawUp(3,3,g);
-        findBlock(g);
+        drawRight(29,1,g);
+        drawUp(29,6,g);
+        //findBlock(g);
     }
     public void draw(Graphics g) {
         if (runing) {
@@ -92,14 +75,14 @@ public void findBlock(Graphics g) {
             g.drawLine(2,2,2,SCREEN_HIGHT);
             g.drawLine(SCREEN_WIDTH,2,SCREEN_WIDTH,SCREEN_HIGHT);
             g.drawLine(2,SCREEN_HIGHT-2,SCREEN_WIDTH,SCREEN_HIGHT-2);
-//            for (int i=0; i<SCREEN_WIDTH/UNIT_SIZE;i++)
-//            {
-//                g.drawLine(i*UNIT_SIZE,0,i*UNIT_SIZE,SCREEN_HIGHT);
-//            }
-//           for (int i=0; i<SCREEN_HIGHT/UNIT_SIZE;i++)
-//            {
-//                g.drawLine(0,i*UNIT_SIZE,SCREEN_WIDTH,i*UNIT_SIZE);
-//           }
+            for (int i=0; i<SCREEN_WIDTH/UNIT_SIZE;i++)
+            {
+                g.drawLine(i*UNIT_SIZE,0,i*UNIT_SIZE,SCREEN_HIGHT);
+            }
+           for (int i=0; i<SCREEN_HIGHT/UNIT_SIZE;i++)
+            {
+                g.drawLine(0,i*UNIT_SIZE,SCREEN_WIDTH,i*UNIT_SIZE);
+           }
         }
     }
 

@@ -103,6 +103,6 @@ public class algo {
         return this.cell;
     }
     public static void main(String[] args) {
-        algo t = new algo(20,20);
+        algo t = new algo(30,7);
     }
 }
