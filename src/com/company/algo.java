@@ -83,8 +83,6 @@ public class algo {
             //System.out.println(nodes.get(temp.src.getIndex()).size() + " " +(++i));
             if(temp.src.getRoot()==temp.dst.getRoot()) {
                 cell.add(temp);
-                System.out.println(cell.size() + " Root of "+temp.dst.getIndex()+" is " + temp.dst.getRoot()
-                        + " Root of "+temp.src.getIndex()+ " is " + temp.src.getRoot());
                 continue;
             } else  {
                if(nodes.get(temp.src.getRoot()).size() > nodes.get(temp.dst.getRoot()).size())
@@ -103,6 +101,6 @@ public class algo {
         return this.cell;
     }
     public static void main(String[] args) {
-        algo t = new algo(30,7);
+        algo t = new algo(27,13);
     }
 }

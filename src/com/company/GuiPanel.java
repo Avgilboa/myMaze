@@ -39,15 +39,20 @@ public void findBlock(Graphics g) {
         edge temp = it.next();
         if(temp.src.getIndex()+1 ==temp.dst.getIndex())
         {
-            int x = (temp.src.getIndex()%Y);
-            int y = (temp.src.getIndex()-x)/X;
+            int y = (temp.src.getIndex()%X);
+            int x = (temp.src.getIndex()-y)/X;
             System.out.println("src: " + temp.src.getIndex() + " Dst: " + temp.dst.getIndex());
             System.out.println("the paramters are: " + x +" " +y);
-            drawRight(x,y,g);
+            drawRight(y,x,g);
         }
-//        else {
-//            System.out.println("problem");
-//        }
+        if(temp.src.getIndex()+X ==temp.dst.getIndex())
+        {
+            int y = (temp.src.getIndex()%X);
+            int x = (temp.src.getIndex()-y)/X;
+            System.out.println("src: " + temp.src.getIndex() + " Dst: " + temp.dst.getIndex());
+            System.out.println("the paramters are: " + x +" " +y);
+            drawUp(y,x,g);
+        }
     }
 }
     public void drawUp(int x, int y, Graphics g)
@@ -64,9 +69,9 @@ public void findBlock(Graphics g) {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
-        drawRight(29,1,g);
-        drawUp(29,6,g);
-        //findBlock(g);
+        drawRight(3,1,g);
+        //drawUp(29,6,g);
+        findBlock(g);
     }
     public void draw(Graphics g) {
         if (runing) {
