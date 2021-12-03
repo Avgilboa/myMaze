@@ -1,7 +1,15 @@
 package com.company;
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+/**
+ * this class represents a node.
+ * every node has an index (from 0 to m*n-1) referring to its square in the m*n matrix:
+ * n0 | n1|....| n(m-1) and so on for the next rows...
+ * and its root represent the key of the set that this node is belonged
+ */
 
 public class Node {
     private int index;
@@ -12,16 +20,8 @@ public class Node {
         this.root = index;
     }
 
-    public void union(int id) {
-        this.root =id;
-    }
-
     public int getIndex() {
         return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
     }
 
     public void setRoot(int root) {
