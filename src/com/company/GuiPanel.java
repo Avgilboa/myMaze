@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-public class GuiPanel extends JPanel implements ActionListener {
+public class GuiPanel extends JPanel{
     static int SCREEN_WIDTH;
     static int SCREEN_HIGHT;
     static int UNIT_SIZE =15;
@@ -20,9 +20,8 @@ public class GuiPanel extends JPanel implements ActionListener {
         this.SCREEN_WIDTH = (Col)*UNIT_SIZE;
         this.cell1 = edge;
         this.setPreferredSize(new Dimension(SCREEN_WIDTH+10,SCREEN_HIGHT+10));
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.WHITE);
         this.setFocusable(true);
-        //this.addKeyListener(new MyKeyAdapter);
         startMaze();
     }
 public void startMaze()
@@ -31,12 +30,12 @@ public void startMaze()
 }
     public void drawUp(int x, int y, Graphics g)
     {
-        g.setColor(Color.PINK);
+        g.setColor(Color.BLACK);
         g.drawLine((x)*UNIT_SIZE,(y)*UNIT_SIZE,(x+1)*UNIT_SIZE,(y)*UNIT_SIZE);
     }
     public void drawRight(int x,int y, Graphics g)
     {
-        g.setColor(Color.PINK);
+        g.setColor(Color.BLACK);
         g.drawLine((x+1)*UNIT_SIZE,(y)*UNIT_SIZE,(x+1)*UNIT_SIZE,(y+1)*UNIT_SIZE);
     }
 
@@ -44,9 +43,6 @@ public void startMaze()
         super.paintComponent(g);
         draw(g);
         findBlock(g);
-
-        //drawRight(0,1,g);
-//        drawUp(1,1,g);
 
     }
 
@@ -68,11 +64,11 @@ public void startMaze()
     }
     public void draw(Graphics g) {
         if (running) {
-            g.setColor(new Color(2,240,120));
-            g.drawLine(2,2,SCREEN_WIDTH,2);
-            g.drawLine(2,2,2,SCREEN_HIGHT);
-            g.drawLine(SCREEN_WIDTH,2,SCREEN_WIDTH,SCREEN_HIGHT);
-            g.drawLine(2,SCREEN_HIGHT-2,SCREEN_WIDTH,SCREEN_HIGHT-2);
+            g.setColor(Color.BLACK);
+            g.drawLine(0,0,SCREEN_WIDTH,0);
+            g.drawLine(0,UNIT_SIZE,0,SCREEN_HIGHT);
+            g.drawLine(SCREEN_WIDTH,0,SCREEN_WIDTH,SCREEN_HIGHT-UNIT_SIZE);
+            g.drawLine(0,SCREEN_HIGHT,SCREEN_WIDTH,SCREEN_HIGHT);
 //            for (int i=0; i<SCREEN_WIDTH/UNIT_SIZE;i++)
 //            {
 //                g.drawLine(i*UNIT_SIZE,0,i*UNIT_SIZE,SCREEN_HIGHT);
@@ -84,10 +80,4 @@ public void startMaze()
         }
     }
 
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
